@@ -1,0 +1,259 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "High-Quality 3D Offline Car Racing Game with Multiplayer",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a high-quality 3D race track environment with React Three Fiber, including road surface, barriers, scenery, dynamic lighting, and shadows",
+      "acceptanceCriteria": [
+        "A 3D race track is fully rendered with visible road markings, barriers, and environmental scenery.",
+        "Dynamic lighting and shadow casting are visible on cars and track surfaces.",
+        "Textures are applied to road, grass, barriers, and car bodies for visual realism.",
+        "The scene runs at a stable frame rate in the browser."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/game/RaceTrack.tsx",
+          "operation": "create",
+          "description": "Create a React Three Fiber component rendering the 3D race track with road mesh, barriers, and environmental objects. Apply the generated track texture (frontend/public/assets/generated/track-texture.dim_512x512.png) to the road surface and terrain texture (frontend/public/assets/generated/terrain-texture.dim_512x512.png) to surrounding ground. Configure directional lighting with shadow casting enabled for cars and track."
+        },
+        {
+          "path": "frontend/src/components/game/Environment.tsx",
+          "operation": "create",
+          "description": "Create a React Three Fiber environment component that renders the sky background using the generated skybox texture (frontend/public/assets/generated/skybox-night.dim_2048x1024.png), plus decorative scenery objects like trees and grandstands around the track perimeter."
+        },
+        {
+          "path": "frontend/src/components/game/Scene.tsx",
+          "operation": "create",
+          "description": "Create a top-level Scene component that composes RaceTrack, Environment, lighting setup, and shadow configuration into a single R3F Canvas. Configure ambient and directional lights with castShadow enabled. This component serves as the root 3D scene container."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement three driveable car models (Nissan GT-R, Porsche 911, BMW M5) with distinct 3D meshes, colors, and performance stats",
+      "acceptanceCriteria": [
+        "Three selectable cars are available: Nissan GT-R, Porsche 911, BMW M5.",
+        "Each car has a visually distinct 3D model with unique body shape, color, and details.",
+        "Each car displays different performance attributes on the car selection screen.",
+        "Selected car appears on the track during the race."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/types/car.ts",
+          "operation": "create",
+          "description": "Define TypeScript types for Car (id, name, color, topSpeed, acceleration, handling, previewImage) and export an array of three car configurations: GT-R (gunmetal grey, high stats), 911 (silver, balanced), M5 (black, performance-tuned). Reference generated preview images: frontend/public/assets/generated/car-gtr-preview.dim_400x200.png, frontend/public/assets/generated/car-911-preview.dim_400x200.png, frontend/public/assets/generated/car-m5-preview.dim_400x200.png."
+        },
+        {
+          "path": "frontend/src/components/game/Car.tsx",
+          "operation": "create",
+          "description": "Create a React Three Fiber component that renders a single car mesh using box geometries and custom shapes to approximate sports car body, spoiler, and rims. Accept props for car config (color, performance stats) and position/rotation. Apply the car's unique color to the mesh material and add visual details like spoiler and body kit geometry."
+        },
+        {
+          "path": "frontend/src/components/game/PlayerCar.tsx",
+          "operation": "create",
+          "description": "Create a PlayerCar component wrapping the Car component with physics and control logic. Accept car config and player input props. Implement keyboard-driven movement (WASD or arrow keys) with acceleration, braking, and steering based on the car's performance stats. Update car position and rotation each frame."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement single-player offline race mode with keyboard controls and AI opponents",
+      "acceptanceCriteria": [
+        "Player can start a single-player race with at least 2 AI opponents.",
+        "Car responds to keyboard inputs for acceleration, braking, and steering.",
+        "AI cars move along the track and complete laps.",
+        "Race ends when the player completes a set number of laps, showing a finish screen with placement."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useKeyboardControls.ts",
+          "operation": "create",
+          "description": "Create a custom hook that listens to keyboard events and returns a controls object with boolean flags for forward, backward, left, right, and brake keys. Support both WASD and arrow key mappings for Player 1."
+        },
+        {
+          "path": "frontend/src/components/game/AICar.tsx",
+          "operation": "create",
+          "description": "Create an AICar component that wraps the Car component and implements simple AI logic. The AI follows a predefined track path (waypoints or spline) and adjusts steering/speed to stay on course. Accept AI difficulty and car config props."
+        },
+        {
+          "path": "frontend/src/hooks/useRaceLogic.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages race state: lap counting, positions, race timer, and finish detection. Track player and AI car positions, determine current lap for each, and detect when the player crosses the finish line. Return race state and finish callback."
+        },
+        {
+          "path": "frontend/src/pages/SinglePlayerRace.tsx",
+          "operation": "create",
+          "description": "Create the single-player race page that composes Scene, PlayerCar, AICar instances (at least 2), and race logic. Use useKeyboardControls for player input and useRaceLogic for race state. When the race finishes, navigate to the finish screen with race results."
+        },
+        {
+          "path": "frontend/src/pages/RaceFinish.tsx",
+          "operation": "create",
+          "description": "Create a race finish screen displaying the player's finishing position, lap times, and a button to return to the main menu or restart the race. Accept race results as props or route state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement local split-screen multiplayer mode with independent viewports and dual keyboard controls",
+      "acceptanceCriteria": [
+        "A 'Local Multiplayer' mode is selectable from the main menu.",
+        "The screen is split into two viewports, one per player.",
+        "Each viewport follows its respective player's car independently.",
+        "Both players can simultaneously control their cars without input conflicts.",
+        "Race results show both players' finishing positions."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useKeyboardControlsP2.ts",
+          "operation": "create",
+          "description": "Create a custom hook for Player 2 keyboard controls, mapping arrow keys to P2 input. Return a controls object similar to useKeyboardControls but listening only to arrow keys (Player 1 uses WASD)."
+        },
+        {
+          "path": "frontend/src/components/game/SplitScreenViewport.tsx",
+          "operation": "create",
+          "description": "Create a component that renders a single R3F Canvas with a custom viewport (half screen). Accept player car ref and camera follow logic. Position the camera to follow the player's car from behind or above. Use R3F's setViewport or render multiple Canvas instances with different sizes."
+        },
+        {
+          "path": "frontend/src/pages/LocalMultiplayerRace.tsx",
+          "operation": "create",
+          "description": "Create the local multiplayer race page with two SplitScreenViewport components stacked or side-by-side. Each viewport contains the full Scene, PlayerCar for P1 (WASD), PlayerCar for P2 (arrows), and shared AI cars. Use separate useRaceLogic instances or a shared race state tracking both players. Show race results for both players on finish."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build main menu with Single Player, Local Multiplayer, Car Selection options and a car selection screen",
+      "acceptanceCriteria": [
+        "Main menu displays Single Player, Local Multiplayer, and Car Selection options.",
+        "Car selection screen shows all three cars with names and stats.",
+        "Player can navigate between cars and confirm selection.",
+        "Confirmed selection persists when entering a race."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MainMenu.tsx",
+          "operation": "create",
+          "description": "Create the main menu page with navigation buttons for Single Player, Local Multiplayer, Car Selection, and Leaderboard. Use React Router navigation to route to respective pages. Apply the generated menu background image (frontend/public/assets/generated/menu-bg.dim_1920x1080.png) and display the game logo (frontend/public/assets/generated/logo.dim_600x150.png) at the top."
+        },
+        {
+          "path": "frontend/src/pages/CarSelection.tsx",
+          "operation": "create",
+          "description": "Create a car selection screen that displays all three car options (GT-R, 911, M5) with their preview images (frontend/public/assets/generated/car-gtr-preview.dim_400x200.png, etc.), names, and performance stats (top speed, acceleration, handling). Allow the user to cycle through cars and confirm selection. Store the selected car in React state or context."
+        },
+        {
+          "path": "frontend/src/context/GameContext.tsx",
+          "operation": "create",
+          "description": "Create a React context to hold global game state such as selected car, race mode, and user profile. Provide a context provider wrapping the app and hooks to access/update the selected car across pages."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire MainMenu, CarSelection, SinglePlayerRace, LocalMultiplayerRace, and RaceFinish pages into React Router routes. Wrap the app with GameContext provider. Set MainMenu as the default route. Ensure all pages are reachable via navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement in-race HUD displaying speed, lap number, race position, and split-screen HUD for multiplayer",
+      "acceptanceCriteria": [
+        "Speed gauge or numeric display is visible during the race.",
+        "Current lap and total laps are displayed (e.g., Lap 2/3).",
+        "Race position is displayed (e.g., 1st, 2nd).",
+        "In split-screen mode, each player has their own HUD."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/game/HUD.tsx",
+          "operation": "create",
+          "description": "Create a HUD component that overlays the 3D scene and displays current speed (km/h), lap number (e.g., Lap 2/3), and race position (1st, 2nd, etc.). Accept speed, currentLap, totalLaps, and position as props. Style with racing-inspired typography and neon accents matching the theme."
+        },
+        {
+          "path": "frontend/src/pages/SinglePlayerRace.tsx",
+          "operation": "modify",
+          "description": "Add the HUD component to SinglePlayerRace, passing race state (speed, lap, position) from useRaceLogic and player car state. Position the HUD absolutely over the Canvas."
+        },
+        {
+          "path": "frontend/src/pages/LocalMultiplayerRace.tsx",
+          "operation": "modify",
+          "description": "Add two HUD components to LocalMultiplayerRace, one per viewport. Each HUD receives its respective player's speed, lap, and position. Position each HUD within its viewport bounds so they do not overlap."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a sleek motorsport visual theme with dark backgrounds, neon accents, bold typography, and animated transitions across all UI screens",
+      "acceptanceCriteria": [
+        "All UI screens use a consistent dark background with neon/metallic accent colors.",
+        "Typography uses bold, racing-inspired fonts.",
+        "Screen transitions include smooth animations.",
+        "Overall UI feels cohesive and premium across menus, car selection, and HUD."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global styles to define a dark background (#0a0a0a or similar), neon accent colors (electric red #ff0040, gold #ffd700), and bold racing-inspired font stack (e.g., Orbitron, Rajdhani, or system fonts with high weight). Add utility classes for neon glow effects and smooth transitions."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom colors (neonRed, neonGold, darkBg), custom font families for racing typography, and animation utilities for screen transitions and button hover effects."
+        },
+        {
+          "path": "frontend/src/components/ui/Button.tsx",
+          "operation": "create",
+          "description": "Create a styled Button component using Tailwind classes with neon accent borders, hover glow effects, and smooth transitions. Use this component across all menu and selection screens for consistency."
+        },
+        {
+          "path": "frontend/src/pages/MainMenu.tsx",
+          "operation": "modify",
+          "description": "Apply theme styling to MainMenu: dark background with the generated menu-bg image, neon accent buttons, and logo display. Add fade-in or slide-in animations for menu items on page load."
+        },
+        {
+          "path": "frontend/src/pages/CarSelection.tsx",
+          "operation": "modify",
+          "description": "Apply theme styling to CarSelection: dark background, neon borders around car preview cards, bold typography for car names and stats, and smooth transition animations when switching between cars."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Persist player high scores and best lap times to backend, and display a leaderboard screen accessible from the main menu",
+      "acceptanceCriteria": [
+        "Best lap times are saved to the backend after each race.",
+        "A leaderboard screen is accessible from the main menu.",
+        "Leaderboard displays top times with car name and timestamp.",
+        "Data persists across page refreshes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useSubmitScore.ts",
+          "operation": "create",
+          "description": "Create a custom hook using React Query mutation to call backend submitScore(car, mode, time). Invoke this after a race finishes with the player's best lap time, selected car, and game mode. Handle success and error states."
+        },
+        {
+          "path": "frontend/src/hooks/useLeaderboard.ts",
+          "operation": "create",
+          "description": "Create a custom hook using React Query to fetch leaderboard data from backend getLeaderboard(car, mode). Return the list of ScoreEntry objects and loading/error states. Enable caching and refetching on mount."
+        },
+        {
+          "path": "frontend/src/pages/Leaderboard.tsx",
+          "operation": "create",
+          "description": "Create a leaderboard page that uses useLeaderboard to fetch and display top lap times. Show car name, player name (if available), time, and mode. Style with dark theme, neon accents, and racing typography. Include a back button to return to the main menu."
+        },
+        {
+          "path": "frontend/src/pages/RaceFinish.tsx",
+          "operation": "modify",
+          "description": "After displaying race results, call useSubmitScore to save the player's best lap time to the backend. Show a confirmation message or auto-navigate after submission. Ensure the score is submitted only once per race."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add the Leaderboard page route to React Router and ensure it is navigable from the MainMenu. Verify all wiring is complete for leaderboard access."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "frontend/src/components/game/Environment.tsx": "3D environment component rendering the sky sphere with night texture, stadium light poles with point lights, called unconditionally with useTexture at the top level to comply with React hooks rules.",
+  "frontend/src/components/game/RaceTrack.tsx": "3D race track component rendering the track surface, ground plane, barriers, lane markings, grandstands, and trees using procedurally generated geometry and textures loaded unconditionally via useTexture at the top level.",
+  "frontend/src/pages/CarSelection.tsx": "Car selection screen showing all three cars with stats, player tabs for P1/P2 selection, and navigation arrows; replaces the non-existent `Steering` icon with `Navigation` from lucide-react.",
+  "frontend/src/pages/SinglePlayerRace.tsx": "Single-player race page composing the 3D scene with player car, two AI opponents, follow camera, HUD, and countdown; fixes AI car refs to be proper `RefObject<THREE.Group>` instances instead of plain `THREE.Group` objects.",
+  "frontend/src/pages/LocalMultiplayerRace.tsx": "Local split-screen multiplayer race page with two stacked Canvas viewports each following their respective player; fixes AI car refs to be proper `RefObject<THREE.Group>` instances and adds explicit TypeScript interface for `RaceSceneProps`."
+}

@@ -1,0 +1,188 @@
+{
+  "kind": "build_request",
+  "title": "High-Quality 3D Offline Car Racing Game with Multiplayer",
+  "projectName": "Apex Racers",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Build a 3D car racing game using React Three Fiber and Three.js with a full race track rendered in 3D, including road surface, barriers, environment objects (trees, grandstands, sky), and dynamic lighting with shadows to achieve high-quality visuals.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "high quality and graphic and takcure"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 3D race track is fully rendered with visible road markings, barriers, and environmental scenery.",
+        "Dynamic lighting and shadow casting are visible on cars and track surfaces.",
+        "Textures are applied to road, grass, barriers, and car bodies for visual realism.",
+        "The scene runs at a stable frame rate in the browser."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement three driveable car models representing iconic vehicles: Nissan GT-R, Porsche 911, and BMW M5. Each car must have a distinct 3D mesh, unique color scheme, performance stats (top speed, acceleration, handling), and visual details like spoilers, rims, and body kits.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "cool cool car like gtr and 911 and bmw m5"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Three selectable cars are available: Nissan GT-R, Porsche 911, BMW M5.",
+        "Each car has a visually distinct 3D model with unique body shape, color, and details.",
+        "Each car displays different performance attributes on the car selection screen.",
+        "Selected car appears on the track during the race."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement single-player offline race mode where the player races against AI-controlled opponent cars on the track. The player controls their car using keyboard inputs (arrow keys or WASD). AI opponents follow the track path and attempt to race competitively.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "ofline"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Player can start a single-player race with at least 2 AI opponents.",
+        "Car responds to keyboard inputs for acceleration, braking, and steering.",
+        "AI cars move along the track and complete laps.",
+        "Race ends when the player completes a set number of laps, showing a finish screen with placement."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement local split-screen multiplayer mode supporting two players on the same device. Player 1 uses WASD controls and Player 2 uses arrow keys. The screen is divided horizontally or vertically into two viewports, each rendering the respective player's camera perspective.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "multiplayer"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Local Multiplayer' mode is selectable from the main menu.",
+        "The screen is split into two viewports, one per player.",
+        "Each viewport follows its respective player's car independently.",
+        "Both players can simultaneously control their cars without input conflicts.",
+        "Race results show both players' finishing positions."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build a main menu screen with options for Single Player, Local Multiplayer, and Car Selection. Include a car selection screen where the player can browse the three available cars, view their stats, and confirm their choice before the race starts.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "car raceing"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Main menu displays Single Player, Local Multiplayer, and Car Selection options.",
+        "Car selection screen shows all three cars with names and stats.",
+        "Player can navigate between cars and confirm selection.",
+        "Confirmed selection persists when entering a race."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement in-race HUD showing current speed (in km/h), current lap number out of total laps, race position, and a mini-map or lap timer. In split-screen mode, each viewport should display its own HUD overlay.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "car raceing",
+          "high quality"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Speed gauge or numeric display is visible during the race.",
+        "Current lap and total laps are displayed (e.g., Lap 2/3).",
+        "Race position is displayed (e.g., 1st, 2nd).",
+        "In split-screen mode, each player has their own HUD."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a sleek, high-octane motorsport visual theme across all UI screens (menus, car selection, HUD). Use a dark background with neon accent colors (e.g., electric red and gold), bold racing-style typography, and animated transitions between screens. The aesthetic should evoke premium motorsport branding.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "high quality and graphic",
+          "cool cool car"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All UI screens use a consistent dark background with neon/metallic accent colors.",
+        "Typography uses bold, racing-inspired fonts.",
+        "Screen transitions include smooth animations.",
+        "Overall UI feels cohesive and premium across menus, car selection, and HUD."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Persist player high scores and best lap times locally using Motoko backend stable storage. Track scores per car and per mode (single player). Display a leaderboard screen accessible from the main menu showing the top lap times.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "car raceing"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Best lap times are saved to the backend after each race.",
+        "A leaderboard screen is accessible from the main menu.",
+        "Leaderboard displays top times with car name and timestamp.",
+        "Data persists across page refreshes."
+      ]
+    }
+  ],
+  "constraints": [
+    "All multiplayer must be local/offline (same device, split-screen) — no network multiplayer.",
+    "No external game engines; use Three.js with React Three Fiber only.",
+    "All Motoko logic must remain in the single main actor file."
+  ],
+  "nonGoals": [
+    "Online/networked multiplayer over the internet.",
+    "Microtransactions or in-app purchases.",
+    "Mobile touch controls.",
+    "Car physics simulation at full simulation fidelity (simplified arcade physics are acceptable).",
+    "Downloadable or installable native game build."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Dark asphalt race track texture tile with white lane markings and subtle wear details (track-texture.dim_512x512.png)",
+      "Grass and dirt terrain texture tile for track surroundings (terrain-texture.dim_512x512.png)",
+      "Night sky with stars and subtle light bloom for race environment background (skybox-night.dim_2048x1024.png)",
+      "Sleek dark main menu background with speed blur light streaks and neon red accents (menu-bg.dim_1920x1080.png)",
+      "Nissan GT-R side-profile illustration in gunmetal grey with red accents (car-gtr-preview.dim_400x200.png)",
+      "Porsche 911 side-profile illustration in silver with gold accents (car-911-preview.dim_400x200.png)",
+      "BMW M5 side-profile illustration in deep black with electric red accents (car-m5-preview.dim_400x200.png)",
+      "Racing game logo wordmark 'Apex Racers' in bold metallic lettering with motion blur (logo.dim_600x150.png)"
+    ],
+    "edits": []
+  }
+}

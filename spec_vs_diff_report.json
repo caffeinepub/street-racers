@@ -1,0 +1,125 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T19:32:25.844Z",
+  "summary": "The diff implements a comprehensive 3D car racing game with most major requirements addressed. The frontend includes 3D scene rendering, car models, AI opponents, split-screen multiplayer, HUD, main menu/car selection, and the backend has Motoko score persistence. However, several specific acceptance criteria have gaps or are only partially addressed.",
+  "missing_requirements": [
+    {
+      "requirement": "Each car must have a distinct 3D mesh with unique body shape; the Car.tsx component appears to use the same geometry for all three cars (identical boxGeometry meshes), only differing in color/accentColor — no distinct body shape per car type (GT-R vs 911 vs M5)",
+      "reason": "Car.tsx is a single shared component with no conditional geometry based on car type — all cars share the same box-based body shape, violating the 'visually distinct 3D model with unique body shape' AC for REQ-2.",
+      "evidence": [
+        "frontend/src/components/game/Car.tsx"
+      ]
+    },
+    {
+      "requirement": "Player 1 uses WASD controls and Player 2 uses arrow keys with no input conflicts, but useKeyboardControls.ts maps both WASD AND arrow keys to Player 1",
+      "reason": "REQ-4 requires no input conflicts between P1 (WASD) and P2 (arrow keys). useKeyboardControls.ts maps ArrowUp/Down/Left/Right to Player 1 as well, so P2 arrow key inputs will also trigger P1 controls simultaneously.",
+      "evidence": [
+        "frontend/src/hooks/useKeyboardControls.ts",
+        "frontend/src/hooks/useKeyboardControlsP2.ts"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Leaderboard displays top times with car name and timestamp — the backend ScoreEntry type has no timestamp field",
+      "reason": "The AC requires timestamps on leaderboard entries. The Motoko ScoreEntry type in main.mo only has player, car, mode, and time fields with no timestamp.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Best lap times are saved per car (GT-R, 911, M5) but the backend CarType only has #sport, #truck, #classic variants which do not map to the actual in-game cars",
+      "reason": "The Motoko CarType variants do not correspond to the three cars in the game, making proper per-car score tracking misaligned with the requirement.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Grandstands as environmental objects must be present in the 3D scene",
+      "reason": "The AC requires grandstands as environmental scenery. Environment.tsx only contains stadium light poles and a sky sphere, no grandstands are implemented.",
+      "evidence": [
+        "frontend/src/components/game/Environment.tsx"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Trees as environmental objects around the track must be present in the 3D scene",
+      "reason": "The AC requires trees as environmental objects. Neither RaceTrack.tsx nor Environment.tsx contains tree geometry.",
+      "evidence": [
+        "frontend/src/components/game/Environment.tsx",
+        "frontend/src/components/game/RaceTrack.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication integration with AuthClient, login/logout flow, and identity-based actor creation",
+      "reason": "The build request does not mention Internet Identity or user authentication. The useInternetIdentity.ts hook and identity-based actor setup were not requested.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Access control and authorization system in the backend with permission checks gating score submission",
+      "reason": "The build request does not mention any access control or authorization layer. The backend adds permission-gating on submitScore which was not requested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "User profile system with UserProfile type and userProfiles map in the backend",
+      "reason": "The build request has no requirement for user profiles. The backend defines UserProfile and a userProfiles map that are unused and unrequested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Time Trial game mode variant in the backend GameMode type",
+      "reason": "The build request specifies only single player and local multiplayer modes. A time trial mode was not requested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/game/AICar.tsx",
+    "frontend/src/components/game/Car.tsx",
+    "frontend/src/components/game/CountdownOverlay.tsx",
+    "frontend/src/components/game/Environment.tsx",
+    "frontend/src/components/game/FollowCamera.tsx",
+    "frontend/src/components/game/HUD.tsx",
+    "frontend/src/components/game/PlayerCar.tsx",
+    "frontend/src/components/game/RaceTrack.tsx",
+    "frontend/src/components/game/Scene.tsx",
+    "frontend/src/components/game/trackData.ts",
+    "frontend/src/context/GameContext.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useKeyboardControls.ts",
+    "frontend/src/hooks/useKeyboardControlsP2.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/hooks/useRaceLogic.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CarSelection.tsx",
+    "frontend/src/pages/Leaderboard.tsx",
+    "frontend/src/pages/LocalMultiplayerRace.tsx",
+    "frontend/src/pages/MainMenu.tsx",
+    "frontend/src/pages/RaceFinish.tsx",
+    "frontend/src/pages/SinglePlayerRace.tsx",
+    "frontend/src/types/car.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

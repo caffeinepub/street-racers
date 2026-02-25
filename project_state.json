@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "A high-quality offline car racing game with multiplayer support, realistic graphics, and iconic cars like Nissan GTR, Porsche 911, and BMW M5.",
+  "architectural_notes": [
+    "3D racing game with high-quality graphics and textures",
+    "Supports offline play and local multiplayer"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dark asphalt race track texture tile with white lane markings and subtle wear details (track-texture.dim_512x512.png)\n- Grass and dirt terrain texture tile for track surroundings (terrain-texture.dim_512x512.png)\n- Night sky with stars and subtle light bloom for race environment background (skybox-night.dim_2048x1024.png)\n- Sleek dark main menu background with speed blur light streaks and neon red accents (menu-bg.dim_1920x1080.png)\n- Nissan GT-R side-profile illustration in gunmetal grey with red accents (car-gtr-preview.dim_400x200.png)\n- Porsche 911 side-profile illustration in silver with gold accents (car-911-preview.dim_400x200.png)\n- BMW M5 side-profile illustration in deep black with electric red accents (car-m5-preview.dim_400x200.png)\n- Racing game logo wordmark 'Apex Racers' in bold metallic lettering with motion blur (logo.dim_600x150.png)",
+  "existing_features": [
+    {
+      "id": "feature-build-a-3d-car-racing-game-using-react-three-fiber-and-three-js-with-a-full-race-track-rendered-in-3d-including-road-surface-barriers-environment-objects-trees-grandstands-sky-and-dynamic-lighting-with-shadows-to-achieve-high-quality-visuals",
+      "title": "Build a 3D car racing game using React Three Fiber and Three.js with a full race track rendered in 3D, including road surface, barriers, environment objects (trees, grandstands, sky), and dynamic lighting with shadows to achieve high-quality visuals.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-three-driveable-car-models-representing-iconic-vehicles-nissan-gt-r-porsche-911-and-bmw-m5-each-car-must-have-a-distinct-3d-mesh-unique-color-scheme-performance-stats-top-speed-acceleration-handling-and-visual-details-like-spoilers-rims-and-body-kits",
+      "title": "Implement three driveable car models representing iconic vehicles: Nissan GT-R, Porsche 911, and BMW M5. Each car must have a distinct 3D mesh, unique color scheme, performance stats (top speed, acceleration, handling), and visual details like spoilers, rims, and body kits.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-single-player-offline-race-mode-where-the-player-races-against-ai-controlled-opponent-cars-on-the-track-the-player-controls-their-car-using-keyboard-inputs-arrow-keys-or-wasd-ai-opponents-follow-the-track-path-and-attempt-to-race-competitively",
+      "title": "Implement single-player offline race mode where the player races against AI-controlled opponent cars on the track. The player controls their car using keyboard inputs (arrow keys or WASD). AI opponents follow the track path and attempt to race competitively.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-local-split-screen-multiplayer-mode-supporting-two-players-on-the-same-device-player-1-uses-wasd-controls-and-player-2-uses-arrow-keys-the-screen-is-divided-horizontally-or-vertically-into-two-viewports-each-rendering-the-respective-player-s-camera-perspective",
+      "title": "Implement local split-screen multiplayer mode supporting two players on the same device. Player 1 uses WASD controls and Player 2 uses arrow keys. The screen is divided horizontally or vertically into two viewports, each rendering the respective player's camera perspective.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-main-menu-screen-with-options-for-single-player-local-multiplayer-and-car-selection-include-a-car-selection-screen-where-the-player-can-browse-the-three-available-cars-view-their-stats-and-confirm-their-choice-before-the-race-starts",
+      "title": "Build a main menu screen with options for Single Player, Local Multiplayer, and Car Selection. Include a car selection screen where the player can browse the three available cars, view their stats, and confirm their choice before the race starts.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-in-race-hud-showing-current-speed-in-km-h-current-lap-number-out-of-total-laps-race-position-and-a-mini-map-or-lap-timer-in-split-screen-mode-each-viewport-should-display-its-own-hud-overlay",
+      "title": "Implement in-race HUD showing current speed (in km/h), current lap number out of total laps, race position, and a mini-map or lap timer. In split-screen mode, each viewport should display its own HUD overlay.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-sleek-high-octane-motorsport-visual-theme-across-all-ui-screens-menus-car-selection-hud-use-a-dark-background-with-neon-accent-colors-e-g-electric-red-and-gold-bold-racing-style-typography-and-animated-transitions-between-screens-the-aesthetic-should-evoke-premium-motorsport-branding",
+      "title": "Apply a sleek, high-octane motorsport visual theme across all UI screens (menus, car selection, HUD). Use a dark background with neon accent colors (e.g., electric red and gold), bold racing-style typography, and animated transitions between screens. The aesthetic should evoke premium motorsport branding.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-player-high-scores-and-best-lap-times-locally-using-motoko-backend-stable-storage-track-scores-per-car-and-per-mode-single-player-display-a-leaderboard-screen-accessible-from-the-main-menu-showing-the-top-lap-times",
+      "title": "Persist player high scores and best lap times locally using Motoko backend stable storage. Track scores per car and per mode (single player). Display a leaderboard screen accessible from the main menu showing the top lap times.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "High-quality 3D racing gameplay with realistic graphics and textures",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Offline single-player mode",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Local/split-screen multiplayer mode",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Iconic cars: Nissan GTR, Porsche 911, BMW M5",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Cool car visuals and customization",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "3d",
+  "projectName": "Street Racers",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

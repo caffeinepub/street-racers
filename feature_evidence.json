@@ -1,0 +1,176 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-build-a-3d-car-racing-game-using-react-three-fiber-and-three-js-with-a-full-race-track-rendered-in-3d-including-road-surface-barriers-environment-objects-trees-grandstands-sky-and-dynamic-lighting-with-shadows-to-achieve-high-quality-visuals",
+      "featureTitle": "Build a 3D car racing game using React Three Fiber and Three.js with a full race track rendered in 3D, including road surface, barriers, environment objects (trees, grandstands, sky), and dynamic lighting with shadows to achieve high-quality visuals.",
+      "files": [
+        "frontend/src/components/game/Environment.tsx",
+        "frontend/src/components/game/RaceTrack.tsx",
+        "frontend/src/components/game/Scene.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-three-driveable-car-models-representing-iconic-vehicles-nissan-gt-r-porsche-911-and-bmw-m5-each-car-must-have-a-distinct-3d-mesh-unique-color-scheme-performance-stats-top-speed-acceleration-handling-and-visual-details-like-spoilers-rims-and-body-kits",
+      "featureTitle": "Implement three driveable car models representing iconic vehicles: Nissan GT-R, Porsche 911, and BMW M5. Each car must have a distinct 3D mesh, unique color scheme, performance stats (top speed, acceleration, handling), and visual details like spoilers, rims, and body kits.",
+      "files": [
+        "frontend/src/components/game/Car.tsx",
+        "frontend/src/components/game/PlayerCar.tsx",
+        "frontend/src/types/car.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-single-player-offline-race-mode-where-the-player-races-against-ai-controlled-opponent-cars-on-the-track-the-player-controls-their-car-using-keyboard-inputs-arrow-keys-or-wasd-ai-opponents-follow-the-track-path-and-attempt-to-race-competitively",
+      "featureTitle": "Implement single-player offline race mode where the player races against AI-controlled opponent cars on the track. The player controls their car using keyboard inputs (arrow keys or WASD). AI opponents follow the track path and attempt to race competitively.",
+      "files": [
+        "frontend/src/components/game/AICar.tsx",
+        "frontend/src/hooks/useKeyboardControls.ts",
+        "frontend/src/hooks/useRaceLogic.ts",
+        "frontend/src/pages/RaceFinish.tsx",
+        "frontend/src/pages/SinglePlayerRace.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-local-split-screen-multiplayer-mode-supporting-two-players-on-the-same-device-player-1-uses-wasd-controls-and-player-2-uses-arrow-keys-the-screen-is-divided-horizontally-or-vertically-into-two-viewports-each-rendering-the-respective-player-s-camera-perspective",
+      "featureTitle": "Implement local split-screen multiplayer mode supporting two players on the same device. Player 1 uses WASD controls and Player 2 uses arrow keys. The screen is divided horizontally or vertically into two viewports, each rendering the respective player's camera perspective.",
+      "files": [
+        "frontend/src/hooks/useKeyboardControlsP2.ts",
+        "frontend/src/pages/LocalMultiplayerRace.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-main-menu-screen-with-options-for-single-player-local-multiplayer-and-car-selection-include-a-car-selection-screen-where-the-player-can-browse-the-three-available-cars-view-their-stats-and-confirm-their-choice-before-the-race-starts",
+      "featureTitle": "Build a main menu screen with options for Single Player, Local Multiplayer, and Car Selection. Include a car selection screen where the player can browse the three available cars, view their stats, and confirm their choice before the race starts.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/context/GameContext.tsx",
+        "frontend/src/pages/CarSelection.tsx",
+        "frontend/src/pages/MainMenu.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-in-race-hud-showing-current-speed-in-km-h-current-lap-number-out-of-total-laps-race-position-and-a-mini-map-or-lap-timer-in-split-screen-mode-each-viewport-should-display-its-own-hud-overlay",
+      "featureTitle": "Implement in-race HUD showing current speed (in km/h), current lap number out of total laps, race position, and a mini-map or lap timer. In split-screen mode, each viewport should display its own HUD overlay.",
+      "files": [
+        "frontend/src/components/game/HUD.tsx",
+        "frontend/src/pages/LocalMultiplayerRace.tsx",
+        "frontend/src/pages/SinglePlayerRace.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-sleek-high-octane-motorsport-visual-theme-across-all-ui-screens-menus-car-selection-hud-use-a-dark-background-with-neon-accent-colors-e-g-electric-red-and-gold-bold-racing-style-typography-and-animated-transitions-between-screens-the-aesthetic-should-evoke-premium-motorsport-branding",
+      "featureTitle": "Apply a sleek, high-octane motorsport visual theme across all UI screens (menus, car selection, HUD). Use a dark background with neon accent colors (e.g., electric red and gold), bold racing-style typography, and animated transitions between screens. The aesthetic should evoke premium motorsport branding.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/CarSelection.tsx",
+        "frontend/src/pages/MainMenu.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-persist-player-high-scores-and-best-lap-times-locally-using-motoko-backend-stable-storage-track-scores-per-car-and-per-mode-single-player-display-a-leaderboard-screen-accessible-from-the-main-menu-showing-the-top-lap-times",
+      "featureTitle": "Persist player high scores and best lap times locally using Motoko backend stable storage. Track scores per car and per mode (single player). Display a leaderboard screen accessible from the main menu showing the top lap times.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/Leaderboard.tsx",
+        "frontend/src/pages/RaceFinish.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
